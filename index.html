@@ -498,6 +498,7 @@
         myPrizeBtn.addEventListener('click', openPrizeModal);
         closeModal.addEventListener('click', () => prizeModal.style.display = 'none');
 
+        // 修改后的点击寄送逻辑
         submitBtn.addEventListener('click', () => {
             const name = document.getElementById('username').value.trim();
             const addr = document.getElementById('address').value.trim();
@@ -508,7 +509,8 @@
                 return;
             }
 
-            alert('提交成功！页面即将退出。');
+            // 👈 核心改动：加入全新特定的截图和通知提醒
+            alert('请记得截图告诉2627');
 
             setTimeout(() => {
                 if (typeof WeixinJSBridge !== "undefined") {
