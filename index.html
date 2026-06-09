@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>0元抽奖 宫主请你喝新Tea</title>
+    <title>0元抽奖 卡皮巴拉给你好果汁</title>
     <style>
         :root {
-            --primary-orange: #ff843d;
-            --bg-color: #ffe6d5;
-            --active-border: #ff3b30;
-            --item-bg: #ffffff;
+            --capybara-brown: #6e473b;   /* 卡皮巴拉标志性醇厚棕 */
+            --pearl-amber: #e2a038;      /* 黄金珍奶琥珀金 */
+            --milktea-bg: #f4e6d4;       /* 丝滑奶茶底色 */
+            --milk-white: #ffffff;       /* 纯净牛奶白 */
+            --text-dark: #4a2e25;        /* 焦糖深褐文字 */
         }
 
         * {
@@ -20,7 +21,7 @@
         }
 
         body {
-            background-color: var(--bg-color);
+            background-color: var(--milktea-bg);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -29,13 +30,13 @@
             padding: 60px 0 30px 0;
         }
 
-        /* 1. 顶部中奖轮播通知 */
+        /* 1. 顶部中奖轮播通知 - 升级为卡皮巴拉深棕半透明 */
         .marquee-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(62, 39, 32, 0.9);
             color: #fff;
             font-size: 13px;
             padding: 8px 15px;
@@ -55,20 +56,20 @@
         /* 头部标题 */
         .header-title {
             text-align: center;
-            color: var(--primary-orange);
+            color: var(--capybara-brown);
             margin-bottom: 20px;
         }
-        .header-title h1 { font-size: 32px; font-weight: bold; }
-        .header-title p { font-size: 15px; color: #666; margin-top: 5px; }
+        .header-title h1 { font-size: 32px; font-weight: bold; letter-spacing: 1px; }
+        .header-title p { font-size: 15px; color: #8a6458; margin-top: 5px; font-weight: 500; }
 
         /* 2. 九宫格抽奖区域 */
         .lottery-box {
             width: 92%;
             max-width: 450px;
-            background-color: var(--primary-orange);
+            background-color: var(--capybara-brown);
             border-radius: 24px;
             padding: 14px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            box-shadow: 0 12px 28px rgba(110, 71, 59, 0.25);
             margin-bottom: 20px;
         }
 
@@ -76,13 +77,13 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             grid-gap: 10px;
-            background-color: #fff8f4;
+            background-color: #fffbf7; /* 细腻浓醇的乳白内胆 */
             border-radius: 16px;
             padding: 10px;
         }
 
         .grid-item {
-            background-color: var(--item-bg);
+            background-color: var(--milk-white);
             border-radius: 12px;
             aspect-ratio: 1; 
             display: flex;
@@ -90,7 +91,8 @@
             align-items: center;
             justify-content: space-between;
             font-size: 11px; 
-            color: #333;
+            color: var(--text-dark);
+            font-weight: bold;
             padding: 8px 4px;
             text-align: center;
             border: 3px solid transparent;
@@ -117,11 +119,11 @@
             border-radius: 4px;
         }
 
-        /* 默认占位底色图（当未替换真实图片链接时显示精美圆底） */
+        /* 默认占位底色图 */
         .img-placeholder {
             width: 100%;
             height: 100%;
-            background-color: #fff0e6;
+            background-color: #fcf1e3;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -129,47 +131,49 @@
             font-size: 24px;
         }
 
+        /* 顺时针点亮：变为高亮的黄金琥珀色，并带有温暖的奶茶色内敛阴影 */
         .grid-item.active {
-            border-color: var(--active-border);
-            background-color: #fff0f0;
-            box-shadow: inset 0 0 10px rgba(255,59,48,0.25);
-            transform: scale(1.02);
+            border-color: var(--pearl-amber);
+            background-color: #fffaf2;
+            box-shadow: inset 0 0 10px rgba(226, 160, 56, 0.2);
+            transform: scale(1.03);
         }
 
-        /* 抽奖按钮样式 */
+        /* 抽奖按钮样式 - 升级为香槟珍奶金渐变 */
         .draw-btn {
             background: linear-gradient(135deg, #e0e0e0, #c0c0c0);
-            color: #444;
+            color: #666;
             cursor: pointer;
             font-weight: bold;
             font-size: 18px;
             justify-content: center;
         }
         .draw-btn.ready {
-            background: linear-gradient(135deg, #ff9500, #ff5e00);
+            background: linear-gradient(135deg, #f5cb83 0%, var(--pearl-amber) 100%);
             color: white;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }
-        .draw-btn p { font-size: 11px; font-weight: normal; margin-top: 4px;}
+        .draw-btn p { font-size: 11px; font-weight: normal; margin-top: 4px; opacity: 0.9;}
 
         /* 3. 底部查看奖品按钮 */
         .action-btn {
             width: 92%;
             max-width: 450px;
-            background-color: #f7b552;
-            color: #723c00;
+            background-color: #c49377; /* 温润柔和的浅卡其卡皮巴拉毛色 */
+            color: #fff;
             text-align: center;
             padding: 14px 0;
             border-radius: 14px;
             font-size: 17px;
             font-weight: bold;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(110, 71, 59, 0.15);
         }
 
         /* 4. 弹窗样式 */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background-color: rgba(0,0,0,0.6);
+            background-color: rgba(62, 39, 32, 0.6);
             display: none;
             justify-content: center;
             align-items: center;
@@ -177,19 +181,19 @@
             padding: 20px;
         }
         .modal-content {
-            background-color: #fff;
+            background-color: var(--milk-white);
             width: 100%;
             max-width: 350px;
             border-radius: 20px;
             padding: 22px;
             text-align: center;
             position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(62, 39, 32, 0.25);
         }
         .modal-close {
             position: absolute;
             top: 12px; right: 16px;
-            font-size: 22px; color: #999;
+            font-size: 22px; color: #a88c83;
             cursor: pointer;
         }
         
@@ -198,13 +202,13 @@
             width: 130px;
             height: 130px;
             margin: 15px auto;
-            background-color: #fff5ee;
+            background-color: #fffbf7;
             border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            border: 1px solid #ffe2d0;
+            border: 1px solid #f2e4d8;
         }
         .prize-big-img-box img {
             width: 90%;
@@ -220,26 +224,28 @@
             text-align: left;
         }
         .form-group label {
-            font-size: 13px; color: #666; display: block; margin-bottom: 5px;
-            font-weight: 500;
+            font-size: 13px; color: var(--text-dark); display: block; margin-bottom: 5px;
+            font-weight: bold;
         }
         .form-group input {
             width: 100%;
             padding: 11px;
-            border: 1px solid #ddd;
+            border: 1px solid #dcd1c4;
             border-radius: 8px;
             font-size: 14px;
             outline: none;
-            background-color: #fafafa;
+            background-color: #fdfcfb;
+            color: var(--text-dark);
         }
         .form-group input:focus { 
-            border-color: var(--primary-orange); 
-            background-color: #fff;
+            border-color: var(--pearl-amber); 
+            background-color: var(--milk-white);
+            box-shadow: 0 0 0 3px rgba(226, 160, 56, 0.15);
         }
 
         .submit-btn {
             width: 100%;
-            background-color: var(--primary-orange);
+            background-color: var(--capybara-brown);
             color: white;
             padding: 13px;
             border: none;
@@ -247,139 +253,124 @@
             font-size: 16px;
             font-weight: bold;
             margin-top: 20px;
-            box-shadow: 0 4px 10px rgba(255,132,61,0.3);
+            box-shadow: 0 4px 12px rgba(110, 71, 59, 0.3);
         }
     </style>
 </head>
 <body>
 
-    <!-- 顶部固定滚动条 -->
     <div class="marquee-container">
         <div class="marquee-text">
-            恭喜 尾号3211 获得满杯红柚！&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            恭喜 尾号2627 获得咸酪碎银子！&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  恭喜 Kim 获得神秘奖励！&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            恭喜 尾号0743 获得轻酵黄皮康普茶！
+            恭喜 尾号3211 获得黄金珍奶！&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            恭喜 尾号2627 获得葡萄乳酪奶绿！&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 恭喜 尾号5230 获得红茶玛奇朵！&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 恭喜 尾号7663 获得黄金珍奶！&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            恭喜 尾号0743 获得比利时酥酪金乌龙奶茶！
         </div>
     </div>
 
-    <!-- 主体标题 -->
     <div class="header-title">
         <h1>0元抽奖</h1>
-        <p>宫主请你喝新Tea</p>
+        <p>卡皮巴拉给你好果汁</p>
     </div>
 
-    <!-- 九宫格区域 - 已无缝嵌入图片标签与兜底占位图 -->
     <div class="lottery-box">
         <div class="grid-container">
-            <!-- 顺时针 0 -->
             <div class="grid-item item-0">
                 <div class="prize-img-wrapper">
-                    <!-- 你只需将 src="xxx" 换成你准备好的具体图片链接或本地路径即可 -->
-                    <img src="image\101.png" alt="轻酵黄皮康普茶" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="img-placeholder" style="display:none;">🍹</div>
+                    <img src="image/101.png" alt="黄金珍奶" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="img-placeholder" style="display:none;">🧋</div>
                 </div>
-                <div class="prize-name">轻酵黄皮康普茶</div>
+                <div class="prize-name">黄金珍奶</div>
             </div>
             
-            <!-- 顺时针 1 -->
             <div class="grid-item item-1">
                 <div class="prize-img-wrapper">
-                    <img src="image\102.png" alt="杨桃三重甘" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <img src="image/102.png" alt="烤糖粉粿冬瓜柠檬茶" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="img-placeholder" style="display:none;">🍹</div>
                 </div>
-                <div class="prize-name">杨桃三重甘</div>
+                <div class="prize-name">烤糖粉粿冬瓜柠檬茶</div>
             </div>
             
-            <!-- 顺时针 2 -->
             <div class="grid-item item-2">
                 <div class="prize-img-wrapper">
-                    <img src="image\103.png" alt="奇兰苹果杏" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <img src="image/103.png" alt="布蕾咸芝士奶绿" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="img-placeholder" style="display:none;">🍵</div>
                 </div>
-                <div class="prize-name">奇兰苹果杏</div>
+                <div class="prize-name">布蕾咸芝士奶绿</div>
             </div>
             
-            <!-- 顺时针 7 -->
             <div class="grid-item item-7">
                 <div class="prize-img-wrapper">
-                    <img src="image\104.png" alt="满杯红柚" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="img-placeholder" style="display:none;">🍹</div>
+                    <img src="image/104.png" alt="比利时酥酪金乌龙奶茶" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="img-placeholder" style="display:none;">🧋</div>
                 </div>
-                <div class="prize-name">满杯红柚</div>
+                <div class="prize-name">比利时酥酪金乌龙奶茶</div>
             </div>
             
-            <!-- 中心抽奖按钮 -->
             <div class="grid-item draw-btn ready" id="drawBtn">
                 <div>点击抽奖</div>
                 <p id="chanceText">剩余1次</p>
             </div>
             
-            <!-- 顺时针 3 -->
             <div class="grid-item item-3">
                 <div class="prize-img-wrapper">
-                    <img src="image\105.png" alt="咸酪碎银子" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <img src="image/105.png" alt="酥酪芒果夹心奶绿" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="img-placeholder" style="display:none;">🧋</div>
                 </div>
-                <div class="prize-name">咸酪碎银子</div>
+                <div class="prize-name">酥酪芒果夹心奶绿</div>
             </div>
             
-            <!-- 顺时针 6 -->
             <div class="grid-item item-6">
                 <div class="prize-img-wrapper">
-                    <img src="image\106.png" alt="南姜甘草芭乐瓶" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <img src="image/106.png" alt="葡萄乳酪奶绿" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="img-placeholder" style="display:none;">🍉</div>
                 </div>
-                <div class="prize-name">南姜甘草芭乐瓶</div>
+                <div class="prize-name">葡萄乳酪奶绿</div>
             </div>
             
-            <!-- 顺时针 5 -->
             <div class="grid-item item-5">
                 <div class="prize-img-wrapper">
-                    <img src="image\107.png" alt="小奶茉" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <img src="image/107.png" alt="香草籽抹茶拿铁" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="img-placeholder" style="display:none;">🥛</div>
                 </div>
-                <div class="prize-name">小奶茉</div>
+                <div class="prize-name">香草籽抹茶拿铁</div>
             </div>
             
-            <!-- 顺时针 4 -->
             <div class="grid-item item-4">
                 <div class="prize-img-wrapper">
-                    <img src="image\108.png" alt="烤黄糖波波牛乳茶" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="img-placeholder" style="display:none;">🧋</div>
+                    <img src="image/108.png" alt="红茶玛奇朵" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="img-placeholder" style="display:none;">☕</div>
                 </div>
-                <div class="prize-name">烤黄糖波波牛乳茶</div>
+                <div class="prize-name">红茶玛奇朵</div>
             </div>
         </div>
     </div>
 
     <div class="action-btn" id="myPrizeBtn">我的奖品</div>
 
-    <!-- 弹窗部分（包含大图展现逻辑） -->
     <div class="modal-overlay" id="prizeModal">
         <div class="modal-content">
             <span class="modal-close" id="closeModal">&times;</span>
-            <h3 style="color:#333;">恭喜获得奖品！</h3>
+            <h3 style="color: var(--capybara-brown);">恭喜获得奖品！</h3>
             
-            <!-- 奖品大图自适应呈现 -->
             <div class="prize-big-img-box">
                 <img id="modalPrizeImg" src="" alt="奖品大图" style="display: none;">
                 <div id="modalPrizePlaceholder" class="prize-big-placeholder">🎁</div>
             </div>
-            <p id="modalPrizeName" style="font-weight: bold; color: var(--primary-orange); margin-bottom: 12px;">未中奖</p>
+            <p id="modalPrizeName" style="font-weight: bold; color: var(--pearl-amber); margin-bottom: 12px; font-size: 16px;">未中奖</p>
             
-            <hr style="border: 0; border-top: 1px dashed #eee;">
+            <hr style="border: 0; border-top: 1px dashed #e5dacb;">
 
             <div class="form-group">
                 <label>收件人姓名</label>
                 <input type="text" id="username" placeholder="请输入姓名">
             </div>
             <div class="form-group">
-                <label>收件地址</label>
-                <input type="text" id="address" placeholder="请输入详细地址">
+                <label>甜度偏好</label>
+                <input type="text" id="address" placeholder="请输入加几粒糖">
             </div>
             <div class="form-group">
-                <label>联系电话</label>
-                <input type="tel" id="telephone" placeholder="请输入电话号码">
+                <label>茶饮想要时间</label>
+                <input type="tel" id="telephone" placeholder="请联系2627告诉他">
             </div>
 
             <button class="submit-btn" id="submitBtn">点击寄送</button>
@@ -409,8 +400,12 @@
         const closeModal = document.getElementById('closeModal');
         const submitBtn = document.getElementById('submitBtn');
 
-        // 初始化时，如果图片链接为空则自动把兜底花样展示出来
+        // 统一路径反斜杠兼容性处理
         document.querySelectorAll('.prize-img-wrapper img').forEach(img => {
+            let currentSrc = img.getAttribute('src');
+            if(currentSrc) {
+                img.setAttribute('src', currentSrc.replace(/\\/g, '/'));
+            }
             if(!img.getAttribute('src')) {
                 img.style.display = 'none';
                 if(img.nextElementSibling) img.nextElementSibling.style.display = 'flex';
@@ -428,9 +423,14 @@
             drawBtn.classList.remove('ready');
             chanceText.innerText = "剩余0次";
 
+            // 1. 动态计算全随机中奖索引目标
+            const randomTargetIndex = Math.floor(Math.random() * 8);
+
             let currentIndex = 0; 
-            let steps = 9;        
-            let speed = 150;      
+            
+            // 2. 环绕算法：基础前行25格（确保在顺时针方向狂奔至少3整圈，仪式感拉满）
+            let steps = 25 + randomTargetIndex;        
+            let baseSpeed = 80; 
 
             function roll() {
                 clockwiseItems.forEach(item => item.classList.remove('active'));
@@ -441,7 +441,14 @@
                 steps--;
                 if (steps > 0) {
                     currentIndex++;
-                    setTimeout(roll, speed);
+                    
+                    // 3. 拟物阻尼缓动减速逻辑（最后6步平滑平稳顺时针定格）
+                    let dynamicSpeed = baseSpeed;
+                    if (steps < 6) {
+                        dynamicSpeed += (6 - steps) * 45; 
+                    }
+                    
+                    setTimeout(roll, dynamicSpeed);
                 } else {
                     isRolling = false;
                     hasWon = true;
@@ -475,13 +482,11 @@
             
             document.getElementById('modalPrizeName').innerText = currentPrize.name;
             
-            // 如果有设置格子图片，则弹窗也同步渲染大图
             if (currentPrize.src) {
                 modalImg.src = currentPrize.src;
                 modalImg.style.display = 'block';
                 modalPlaceholder.style.display = 'none';
             } else {
-                // 如果没有图，则使用对应格子的花样图标做大图兜底
                 modalImg.style.display = 'none';
                 modalPlaceholder.style.display = 'block';
                 modalPlaceholder.innerText = currentPrize.fallbackIcon;
